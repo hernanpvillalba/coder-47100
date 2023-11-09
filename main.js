@@ -1,12 +1,3 @@
-function pedirDatos(){
-    let nombre = prompt ("Por favor, ingrese su nombre");
-    let saludo = "Hola";
-    let saludoCompleto = saludo + " " + nombre;
-    alert (`${saludoCompleto}, bienvenido a Detailing Vehicular`);
-}
-pedirDatos()
-
-
 class Producto {
     constructor (nombre, marca, precio, cantidad){
         this.nombre = nombre;
@@ -17,51 +8,84 @@ class Producto {
 }
 
 const productos = [];
-productos.push(new Producto ("shampoo", "toxic shane shampoo", 2150, 10));
-productos.push(new Producto ("cera","cera líquida toxic shane", 2700, 10));
-productos.push(new Producto ("paño","paño microfibra Laffitte", 4200, 10));
-productos.push(new Producto ("esponja","esponja de microfibra", 2800, 15));
-productos.push(new Producto ("cepillo","cepillo para llantas", 6500, 5));
+productos.push(new Producto ("shampoo", "Toxic Shane Shampoo", 2150, 10));
+productos.push(new Producto ("cera","Cera Líquida Toxic Shane", 2700, 10));
+productos.push(new Producto ("paño","Paño Microfibra Laffitte", 4200, 10));
+productos.push(new Producto ("esponja","Esponja De Microfibra", 2800, 15));
+productos.push(new Producto ("cepillo","Cepillo Para Llantas", 6500, 5));
 
-let nombre = prompt ("Ingresa el producto que buscas: shampoo / cera / paño / esponja / cepillo").toLowerCase();
-while (nombre != "shampoo" && nombre != "cera" && nombre != "paño" && nombre != "esponja" && nombre != "cepillo" ){
-    alert ("No es un producto valido")
-    nombre = prompt ("Ingresa el producto que buscas: shampoo / cera / paño / esponja / cepillo").toLowerCase();
-}
+const buscador = document.getElementById("buscador");
+const listaResultado = document.getElementById("listaResultado");
+const sinResultado = document.getElementById ("sinResultado");
 
-const buscador = productos.find((item) => item.nombre === nombre);
+const verCarrito = document.getElementById("verCarrito");
+const contenidoCarrito = document.getElementById("contenidoCarrito");
 
-if (buscador){
-    alert(`
-    Marca: ${buscador.marca}
-    Precio: ${buscador.precio}
-    Cantidad Disponible: ${buscador.cantidad} 
-    `);
-} 
+let carrito = [];
 
+const buscadorProducto = () => {
+    const buscarProducto = buscador.value.toLowerCase();
+    const filtradoProducto = productos.filter((item) => item.nombre.toLowerCase().startsWith(buscarProducto));
 
-let compra = prompt ("Queres comprarlo? si/no").toLowerCase()
-if (compra == "no"){
-    alert("Gracias, vuelva prontos");
-} else if (compra == "si"){
-    switch(productos){
-        case "shampoo":
-            break;
-        case "cera":
-            break;
-        case "paño":
-            break;
-        case "esponja":
-            break;
-        case "cepillo":
-            break;
-        default:
-            break;
-    }
-    let unidades = parseInt (prompt("Ingresa la cantidad deseada"));
-    if( unidades > buscador.cantidad ) {
-        alert ("No hay stock disponible");
+    listaResultado.innerHTML = "";
+
+    if(filtradoProducto.length === 0){
+        sinResultado.style.display = "block";
     } else{
-        alert ("Gracias por tu compra")
+        filtradoProducto.forEach((productos) => {
+            let div = document.createElement("div");
+            div.innerHTML = `
+            <h2>Marca: ${productos.marca}</h2>
+            <p>Nombre: ${productos.nombre}</p>
+            <b>Precio: ${productos.precio} </b>
+            `;
+            listaResultado.append(div);
+
+            let comprar = document.createElement("button");
+            comprar.innerText = "Comprar"; 
+            div.append(comprar);
+
+            comprar.addEventListener("click",() =>{
+                carrito.push({
+                    nombre: productos.nombre,
+                    marca: productos.marca,
+                    precio: productos.precio,
+                });
+                console.log(carrito);
+            });
+        });
+        sinResultado.style.display = "none";
     }
-}
+    if(buscador.value === "") {
+        listaResultado.innerHTML = "";
+    }
+};
+
+buscador.addEventListener("input", buscadorProducto);
+
+verCarrito.addEventListener ("click", () =>{
+    const carritoCompra = document.createElement("div");
+    carritoCompra.innerHTML=`
+    <h1> Carrito de compras </h1>
+    `;
+    contenidoCarrito.append(carritoCompra);
+
+    carrito.forEach((productos) =>{
+        let carritoContent = document.createElement ("div");
+        carritoContent.innerHTML = `
+            <h2>Marca: ${productos.marca}</h2>
+            <p>Nombre: ${productos.nombre}</p>
+            <b>Precio: ${productos.precio} </b>
+    `;
+    contenidoCarrito.append(carritoContent);
+    }); 
+
+    const total = carrito.reduce((acc, el) => acc + el.precio,0);
+
+    const totalCompra = document.createElement ("div");
+    totalCompra.innerHTML = `<h3>total a pagar: ${total} $</h3>`;
+    contenidoCarrito.append(totalCompra);
+});
+
+localStorage.setItem ("articulos", JSON.stringify(productos));
+let articulos = JSON.parse (localStorage.getItem("productos"));

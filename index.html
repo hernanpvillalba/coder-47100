@@ -3,10 +3,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--CSS-->
+    <link rel="stylesheet" href="style.css">
     <title>Proyecto JavaScript</title>
 </head>
+
 <body>
-    <h1>Detailing Vehicular</h1>
+    <div class="contenedorBuscador">
+        <h1 id="saludo">Bienvenido a Detailing Vehicular</h1>
+        <h2>Ingresa el producto que buscas</h2>
+        <input type="text" id="buscador" placeholder="Cera, cepillo, shampoo, paño, esponja">
+        <ul id="listaResultado" class="lista-resultado"></ul>
+        <p id="sinResultado" class="sin-resultado"> No se encontro el producto</p>
+        <h3> <button id="verCarrito">Ver Carrito</button></h3>
+    </div>
+
+
+    <div id="contenidoCarrito" class="contenido-carrito"></div>
+    
+
+
+
     <script src="main.js"></script>
+    
 </body>
 </html>
