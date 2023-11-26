@@ -1,0 +1,50 @@
+[
+    {
+        "nombre":"Toxic Shine Shampoo",
+        "precio": 2150,
+        "cantidad": 1,
+        "imagen": "/imagenes/shampoo.png"
+    },
+    {
+        "nombre":"Cera Líquida Toxic Shine",
+        "precio": 2700,
+        "cantidad": 1,
+        "imagen": "/imagenes/cera.png"
+    },
+    {
+        "nombre":"Lubricante Toxic Shine",
+        "precio": 3500,
+        "cantidad": 1,
+        "imagen": "/imagenes/lubricante.png"
+    },
+    {
+        "nombre":"Revividor Toxic Shine",
+        "precio": 2000,
+        "cantidad": 1,
+        "imagen": "/imagenes/revividor.png"
+    },
+    {
+        "nombre":"Paño Microfibra Laffitte",
+        "precio": 4200,
+        "cantidad": 1,
+        "imagen": "/imagenes/pano.jpeg"
+    },
+    {
+        "nombre":"Esponja De Microfibra",
+        "precio": 2800,
+        "cantidad": 1,
+        "imagen": "/imagenes/esponja.webp"
+    },
+    {
+        "nombre":"Cepillo Cercrin",
+        "precio": 1200,
+        "cantidad": 1,
+        "imagen": "/imagenes/cepillo.webp"
+    },
+    {
+        "nombre":"Manopla Microfibra",
+        "precio": 6500,
+        "cantidad": 1,
+        "imagen": "/imagenes/manopla.webp"
+    }
+]

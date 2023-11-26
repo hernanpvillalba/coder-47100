@@ -3,27 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!--CSS-->
     <link rel="stylesheet" href="style.css">
     <title>Proyecto JavaScript</title>
 </head>
 
 <body>
-    <div class="contenedorBuscador">
-        <h1 id="saludo">Bienvenido a Detailing Vehicular</h1>
-        <h2>Ingresa el producto que buscas</h2>
-        <input type="text" id="buscador" placeholder="Cera, cepillo, shampoo, paño, esponja">
-        <ul id="listaResultado" class="lista-resultado"></ul>
-        <p id="sinResultado" class="sin-resultado"> No se encontro el producto</p>
-        <h3> <button id="verCarrito">Ver Carrito</button></h3>
+
+    <div class="nav-container">
+        <nav class="navbar">
+            <h1 class="carrito-compra" id="carritoCompra"> 🚗  </h1>
+
+        </nav>
     </div>
 
+    <div class="banner">
+        <div class="banner-container">
+            <h1 id="saludo">Detailing Vehicular</h1>
+            <h2>Lo mejor para tu auto</h2>
+        </div>
+    </div>
 
-    <div id="contenidoCarrito" class="contenido-carrito"></div>
-    
+    <div id="productosVenta" class="productos-venta"></div>
 
+    <div id="compras" class="compras"></div>
 
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="main.js"></script>
     
 </body>
